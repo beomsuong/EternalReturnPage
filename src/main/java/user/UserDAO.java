@@ -12,7 +12,7 @@ public class UserDAO {
 	
 	public UserDAO() {
 		try {
-			String dbURL="jdbc:mysql://localhost:3306/BBS";
+			String dbURL="jdbc:mysql://localhost:3306/Bser";
 			String dbID="root";
 			String dbPassword="1234";
 			Class.forName("com.mysql.jdbc.Driver");
@@ -40,6 +40,40 @@ public class UserDAO {
 		}
 		return -2;//데이터베이스 오류
 	}
+	public String getMMR(String userID) {
+		String SQL="SELECT userMMR FROM USER WHERE userID = ?";
+		try {
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+			
+					return rs.getString(1);//로그인 성공
+				
+			}
+			return "error";
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return "error2";//데이터베이스 오류
+	}
+	public String getName(String userID) {
+		String SQL="SELECT userName FROM USER WHERE userID = ?";
+		try {
+			pstmt=conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+			
+					return rs.getString(1);//로그인 성공
+				
+			}
+			return "error";
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return "error2";//데이터베이스 오류
+	}
 	public int join(User user) {
 		String SQL="INSERT INTO USER VALUES(?, ?, ?, ?, ?)";
 		try {
@@ -47,7 +81,6 @@ public class UserDAO {
 			pstmt.setString(1, user.getUserID());
 			pstmt.setString(2, user.getUserPassword());
 			pstmt.setString(3, user.getUserName());
-			pstmt.setString(4, user.getUserGender());
 			pstmt.setString(5, user.getUserEmail());
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
