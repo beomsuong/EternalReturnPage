@@ -1,0 +1,37 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgohtic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+    .navbar {
+        width: 100%;
+    }
+h1 {
+	font-family : "Hanna";
+}
+.sample {
+ font-family : "Hanna";
+ font-size: 20pt;
+}
+.button-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    width: 100%; /* 추가 */
+}
+.parent-div {
+    width: 100%;
+}
+    .btn_image { 
+     border: none;
+     background-color: white;
+        position: relative; 
+        overflow: hidden;
+        display: flex;  /* 추가 */
+        justify-content: center;  /* 추가 */
+        align-items: center;  /* 추가 */
+    }
+    .btn_image img { 
+        max-width: 100%;  /* 수정 */
+        max-height: 100%; /* 수정 */
+    }
