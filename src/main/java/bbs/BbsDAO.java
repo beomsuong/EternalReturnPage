@@ -6,11 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import user.User;
+
 public class BbsDAO {
 	private Connection conn;
-
 	private ResultSet rs;
-
 	public BbsDAO() {
 		try {
 			String dbURL = "jdbc:mysql://localhost:3306/Bser";
@@ -37,7 +37,7 @@ public class BbsDAO {
 		return "";
 	}
 
-	public int getNext(int characterID) {
+	public int getNext(int characterID) { //다음 글 번호를 찾는 함수
 		String SQL = "SELECT bbsID FROM BBS where bbscharacterID = ? ORDER BY bbsID DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -70,32 +70,31 @@ public class BbsDAO {
 		return -1;
 	}
 
-	public ArrayList<Bbs> getList(int characterID, int pageNumber) {
-		String SQL = "SELECT * FROM BBS WHERE characterID = ? AND bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
-		ArrayList<Bbs> list = new ArrayList<Bbs>();
 
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, characterID);
-			pstmt.setInt(2, getNext(characterID) - (pageNumber - 1) * 10);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Bbs bbs = new Bbs();
-				bbs.setBbsID(rs.getInt("bbsID"));
-				bbs.setBbsCharacterID(rs.getInt("characterID"));
-				bbs.setBbsTitle(rs.getString("bbsTitle"));
-				bbs.setUserID(rs.getString("userID"));
-				bbs.setBbsDate(rs.getString("bbsDate"));
-				bbs.setBbsContent(rs.getString("bbsContent"));
-				bbs.setBbsAvailable(rs.getInt("bbsAvailable"));
-				list.add(bbs);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
+	
+	public ArrayList<Bbs> view(int characterID) { //캐릭터별로 글을 불러온다
+	    String SQL = "SELECT * FROM Bbs WHERE characterID LIKE ?";
+	    ArrayList<Bbs> BbsList = new ArrayList<Bbs>();
+	    try {
+	        PreparedStatement pstmt = conn.prepareStatement(SQL);
+	        pstmt.setString(1,"%"+ characterID+"%" );  
+	        rs = pstmt.executeQuery();
+	        while(rs.next()) {
+	            Bbs bbs = new Bbs();
+	            bbs.setBbsID(rs.getInt(1));
+	            bbs.setBbsCharacterID(rs.getInt(2));
+	            bbs.setUserID(rs.getString(3));
+	            bbs.setBbsDate(rs.getString(4));
+	            bbs.setBbsContent(rs.getString(5));
+	            bbs.setBbsAvailable(rs.getInt(6));
+	            
+	            BbsList.add(bbs);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return BbsList;  
 	}
-
 	///아래부터는 수정 예정임
 
 }

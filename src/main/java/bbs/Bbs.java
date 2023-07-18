@@ -1,13 +1,12 @@
 package bbs;
 
 public class Bbs {
-	private int bbsID;
+	private int bbsID;/*몇번째 글인지 표시*/
 	private int bbsCharacterID; /* 캐릭터의 고유한 번호를 저장하여 게시판 분류에 사용 */
-	private String bbsTitle;
-	private String UserID;
+	private String UserID; 
 	private String bbsDate;
 	private String bbsContent;
-	private int bbsAvailable;
+	private int bbsAvailable;/*해당 글 유효 여부*/
 	public int getBbsID() {
 		return bbsID;
 	}
@@ -19,12 +18,6 @@ public class Bbs {
 	}
 	public void setBbsCharacterID(int bbsCharacterID) {
 		this.bbsCharacterID = bbsCharacterID;
-	}
-	public String getBbsTitle() {
-		return bbsTitle;
-	}
-	public void setBbsTitle(String bbsTitle) {
-		this.bbsTitle = bbsTitle;
 	}
 	public String getUserID() {
 		return UserID;

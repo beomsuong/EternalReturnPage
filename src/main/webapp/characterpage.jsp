@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/custom.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <%
-String userID = null;
+String userID = null; 
 String userName = null;
 String userMMR = null;
 if (session.getAttribute("userID") != null) {
@@ -29,11 +29,13 @@ String characterID=null;
     %>
     <script type="text/javascript">
     
-    var registerRequest = new XMLHttpRequest();
-	function registerFunction() {
+    var writeRequest = new XMLHttpRequest();
+  
+    
+	function writeFunction() { 
 		var characterID = "<%=characterID%>";
 		var userID = "<%=userID%>";
-	    registerRequest.open("POST", "./UserRegisterServlet", true);
+	    registerRequest.open("POST", "./BbsWriteServlet", true);
 	    registerRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	    var queryString = "characterID="
 	        + characterID
@@ -41,18 +43,17 @@ String characterID=null;
 	        + userID
 	        + "&bbsContent="
 	        + encodeURIComponent(document.getElementById("bbsContent").value);
-	    registerRequest.onreadystatechange = registerProcess;
-	    registerRequest.send(queryString); 
-	   
+	    writeRequest.onreadystatechange = writeProcess;
+	    writeRequest.send(queryString); 
 	}
 
-	function registerProcess() {
-	    if (registerRequest.readyState == 4 && registerRequest.status == 200) {
-	        var result = registerRequest.responseText;
+	function writeProcess() {
+	    if (writeRequest.readyState == 4 && writeRequest.status == 200) {
+	        var result = writeRequest.responseText;
 	        if (result != 1) {
 	            alert("등록에 실패했습니다.");
 	        } else {
-	            alert("게시글이 성공적으로 등록되었습니다.");
+	            alert("등록에 성공했습니다.");
 	        }
 	    }
 	}
