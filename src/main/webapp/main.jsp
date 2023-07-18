@@ -76,9 +76,9 @@
 <div style="overflow:auto; width:500px; height:400px;">
 <div class="button-container">
 <%
-for(int i = 1; i <50; i++) { %>
+for(int i = 1; i <5; i++) { %>
 <button type="button" class="btn_image" id="img_btn<%=i%>" onclick="location.href='characterpage.jsp?characterID=<%=i%>'">
-    <img src="MainCharacter/0.png" width="64" height="64">
+    <img src="MainCharacter/<%=i%>.png" width="64" height="64">
 </button>
 <% } %>
 </div>

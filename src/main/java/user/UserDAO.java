@@ -63,10 +63,8 @@ public class UserDAO {
 			pstmt=conn.prepareStatement(SQL);
 			pstmt.setString(1, userID);
 			rs=pstmt.executeQuery();
-			if(rs.next()) {
-			
+			if(rs.next()) {		
 					return rs.getString(1);//로그인 성공
-				
 			}
 			return "error";
 		}catch (Exception e){

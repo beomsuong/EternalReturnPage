@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!-- 캐릭터 게시판  -->
 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="charactername.CharacterName"%>
 <!DOCTYPE html>
 <html>
@@ -8,28 +9,61 @@
 <link rel="stylesheet" href="css/custom.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <%
+String userID = null;
+String userName = null;
+String userMMR = null;
+if (session.getAttribute("userID") != null) {
+	userID = (String) session.getAttribute("userID");
+}
+if (session.getAttribute("userName") != null) {
+	userName=(String) session.getAttribute("userName");
+}
+if (session.getAttribute("userMMR") != null) {
+	userMMR=(String) session.getAttribute("userMMR");
+}
 String characterID=null;
     characterID = request.getParameter("characterID") ;
-%>
+    
+    
+    
+    %>
+    <script type="text/javascript">
+    
+    var registerRequest = new XMLHttpRequest();
+	function registerFunction() {
+		var characterID = "<%=characterID%>";
+		var userID = "<%=userID%>";
+	    registerRequest.open("POST", "./UserRegisterServlet", true);
+	    registerRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	    var queryString = "characterID="
+	        + characterID
+	        + "&userID="
+	        + userID
+	        + "&bbsContent="
+	        + encodeURIComponent(document.getElementById("bbsContent").value);
+	    registerRequest.onreadystatechange = registerProcess;
+	    registerRequest.send(queryString); 
+	   
+	}
+
+	function registerProcess() {
+	    if (registerRequest.readyState == 4 && registerRequest.status == 200) {
+	        var result = registerRequest.responseText;
+	        if (result != 1) {
+	            alert("등록에 실패했습니다.");
+	        } else {
+	            alert("게시글이 성공적으로 등록되었습니다.");
+	        }
+	    }
+	}
+
+	
+</script>
 
     <meta charset="UTF-8">
     <title><%=CharacterName.characterNamesKr.get(Integer.parseInt(characterID))%>게시판 </title>
 </head>
 <body>
-		<%
-	String userID = null;
-	String userName = null;
-	String userMMR = null;
-	if (session.getAttribute("userID") != null) {
-		userID = (String) session.getAttribute("userID");
-	}
-	if (session.getAttribute("userName") != null) {
-		userName=(String) session.getAttribute("userName");
-	}
-	if (session.getAttribute("userMMR") != null) {
-		userMMR=(String) session.getAttribute("userMMR");
-	}
-	%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,10 +125,10 @@ String characterID=null;
 <div class="container">
 		<div class="form-group row pull-right">
 			<div class="col-xs-8">
-				<input class="form-control" id="userName" 
+				<input class="form-control" id="bbsContent" 
 					type="text" size="20"  style="height: 200px; width :800px">
 			</div>
-				<button class="btn btn-primary" onclick="searchFunction();"
+				<button class="btn btn-primary" onclick="registerFunction();"
 					type="button" >입력</button>
 			</div>
 		</div>
@@ -104,12 +138,10 @@ String characterID=null;
 		<thead>
 		<%for(int i=0;i<3;i++)  {%>
 			<tr>
-				<td style="background-color: #fafafa; text-align: center;">닉네임</td>
-					<td style="background-color: #fafafa; text-align: center;">날짜</td>
-							
+				<td style="background-color: #fafafa; text-align: left;">닉네임</td>
 				</tr>
 				<tr>
-				<td style="background-color: #fafafa; text-align: center;">내용</td>
+				<td style="background-color: #fafafa; text-align: left;">내용</td>
 			</tr>
 			<%} %>
 		</thead>

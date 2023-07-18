@@ -4,7 +4,7 @@ public class User {
 
 	
 	private String userName;
-	private int userMMR;
+	private int userMMR; //유저 개인의 MMR을 서버로 부터 받아와 저장한다
 	private String userEmail;
 	private String userPassword;
 	private String userID;

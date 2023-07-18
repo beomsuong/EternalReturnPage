@@ -1,11 +1,10 @@
+/*캐릭터의 정보를 간편하게 사용하기 위해 map형태로 저장하여 사용*/
 package charactername;
-
 import java.util.Map;
 import java.util.HashMap;
 
 public class CharacterName {
     public static final Map<Integer, String> characterNamesKr;
-
     static {
         characterNamesKr = new HashMap<>();
         characterNamesKr.put(1, "재키");
