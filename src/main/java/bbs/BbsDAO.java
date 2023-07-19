@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import user.User;
 
 public class BbsDAO {
 	private Connection conn;
@@ -73,7 +72,7 @@ public class BbsDAO {
 
 	
 	public ArrayList<Bbs> view(int characterID) { //캐릭터별로 글을 불러온다
-	    String SQL = "SELECT * FROM Bbs WHERE characterID LIKE ?";
+	    String SQL = "SELECT * FROM Bbs WHERE bbscharacterID LIKE ?";
 	    ArrayList<Bbs> BbsList = new ArrayList<Bbs>();
 	    try {
 	        PreparedStatement pstmt = conn.prepareStatement(SQL);
