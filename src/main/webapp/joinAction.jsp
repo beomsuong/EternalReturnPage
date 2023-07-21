@@ -7,8 +7,7 @@
 <jsp:setProperty name="user" property="userID" param="userID"/>
 <jsp:setProperty name="user" property="userPassword" param="userPassword"/>
 <jsp:setProperty name="user" property="userName" param="userName"/>
-<jsp:setProperty name="user" property="userGender" param="userGender"/>
-<jsp:setProperty name="user" property="userEmail" param="userEmail"/>
+<jsp:setProperty name="user" property="userMMR" param="userMMR"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +29,7 @@ if(session.getAttribute("userID") !=null){
 	        script.println("</script>");
 	}
 	if(user.getUserID()==null ||user.getUserPassword()==null ||
-			user.getUserName()==null ||user.getUserGender()==null ||
+			user.getUserName()==null ||user.getUserMMR()==null ||
 			user.getUserEmail()==null){
 	    PrintWriter script = response.getWriter();
 		   script.println("<script>");

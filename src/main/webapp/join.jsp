@@ -11,6 +11,16 @@
 <%
 	boolean checkID= false; //사용자가 입력한 이터널리턴 닉네임이 유효한지 API를 사용하여 체크
 	%>
+	<script type="text/javascript">
+    
+
+    
+    
+function CheckMMRFunction() {
+
+	alert("MMR 확인.");
+	}
+	</script>
 <body>
 	<jsp:include page="navbar.jsp" />
 	<div class="container">
@@ -34,7 +44,7 @@
 								name="userName" maxlength="20">
 						</div>
 						<div class="col-md-4 text-right">
-							<input type="button" class="btn btn-primary" value="닉네임 인증">
+							<input type="button" class="btn btn-primary" value="닉네임 인증" onclick="CheckMMRFunction();" >
 						</div>
 					</div>
 
