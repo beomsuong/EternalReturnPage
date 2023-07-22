@@ -1,20 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="user.UserDAO" %>
-<%@ page import="java.io.PrintWriter" %>
+	pageEncoding="UTF-8"%>
+<%@ page import="user.UserDAO"%>
+<%@ page import="java.io.PrintWriter"%>
 <% request.setCharacterEncoding("UTF-8"); %>
-<jsp:useBean id="user" class="user.User" scope="page"/>
-<jsp:setProperty name="user" property="userID" param="userID"/>
-<jsp:setProperty name="user" property="userPassword" param="userPassword"/>
+<jsp:useBean id="user" class="user.User" scope="page" />
+<jsp:setProperty name="user" property="userID" param="userID" />
+<jsp:setProperty name="user" property="userPassword"
+	param="userPassword" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content = "width=device-width; initial-scale=1">
+<meta name="viewport" content="width=device-width; initial-scale=1">
 <title>로그인 처리</title>
 </head>
 <body>
-<%
+	<%
 	String userID =null;
 if(session.getAttribute("userID") !=null){
 	userID=(String)session.getAttribute("userID") ;

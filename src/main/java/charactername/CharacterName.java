@@ -56,8 +56,5 @@ public class CharacterName {
         characterNamesKr.put(47, "라우라");
         characterNamesKr.put(48, "띠아");
         characterNamesKr.put(49, "펠릭스");
-        
-        
-        
     }
 }

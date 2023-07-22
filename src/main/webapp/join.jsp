@@ -9,18 +9,14 @@
 <title>이터널리턴 팬 사이트 회원가입</title>
 </head>
 <%
-	boolean checkID= false; //사용자가 입력한 이터널리턴 닉네임이 유효한지 API를 사용하여 체크
-	%>
-	<script type="text/javascript">
-    
+boolean checkID = false; //사용자가 입력한 이터널리턴 닉네임이 유효한지 API를 사용하여 체크
+%>
+<script type="text/javascript">
+	function CheckMMRFunction() {
 
-    
-    
-function CheckMMRFunction() {
-
-	alert("MMR 확인.");
+		alert("MMR 확인.");
 	}
-	</script>
+</script>
 <body>
 	<jsp:include page="navbar.jsp" />
 	<div class="container">
@@ -37,14 +33,15 @@ function CheckMMRFunction() {
 						<input type="password" class="form-control" placeholder="비밀먼호"
 							name="userPassword" maxlength="20">
 					</div>
-					
+
 					<div class="form-group row">
 						<div class="col-md-8">
 							<input type="text" class="form-control" placeholder="이터널리턴 닉네임"
 								name="userName" maxlength="20">
 						</div>
 						<div class="col-md-4 text-right">
-							<input type="button" class="btn btn-primary" value="닉네임 인증" onclick="CheckMMRFunction();" >
+							<input type="button" class="btn btn-primary" value="닉네임 인증"
+								onclick="CheckMMRFunction();">
 						</div>
 					</div>
 
